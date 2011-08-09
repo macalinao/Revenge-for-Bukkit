@@ -1,0 +1,10 @@
+name: Revenge
+main: com.simplyian.mc.revenge.Revenge
+authors:
+  - AlbireoX
+description: Take revenge on killers!
+version: 0.1
+commands:
+  revenge:
+    description: Revenge base command
+    usage: /revenge [command]
