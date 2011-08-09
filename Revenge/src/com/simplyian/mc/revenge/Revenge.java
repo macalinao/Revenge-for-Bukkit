@@ -273,7 +273,7 @@ public class Revenge extends JavaPlugin {
                             amountMap.put(curElement, newValue);
                         }
                         for (Entry<String, Integer> aKey: amountMap.entrySet()) {
-                            sender.sendMessage(ChatColor.GREEN + aKey.getValue().toString() + " x " + ChatColor.YELLOW + aKey.getKey());
+                            sender.sendMessage(ChatColor.GREEN + aKey.getValue().toString() + " x " + ChatColor.YELLOW + revengeList.get(aKey.getKey()).getNiceName());
                         }
                     } else {
                         sender.sendMessage(ChatColor.RED + "You have not purchased any revenges.");
@@ -511,13 +511,10 @@ public class Revenge extends JavaPlugin {
         Location deathLocation = killed.getLocation();
         List<String> purchasedRevenges = this.getRevenges(killed.getName());
         if (purchasedRevenges != null) {
-            System.out.print("The guy owns revenges");
             Iterator it = purchasedRevenges.iterator();
             while (it.hasNext()) {
-                System.out.print("Parsing revenge");
                 String revenge = (String) it.next();
                 RevengeType rt = revengeList.get(revenge);
-                System.out.print("Parsing revenge " + rt.getNiceName());
                 this.parseRevenge(rt, killed);
             }
         }
@@ -597,7 +594,6 @@ public class Revenge extends JavaPlugin {
      * @since 0.1
      */
     public void parseRevenge(RevengeType revenge, Player player) {
-        System.out.print("It's called");
         List<String> efs = revenge.getEffects();
         Iterator it = efs.iterator();
         while (it.hasNext()) {
@@ -606,7 +602,6 @@ public class Revenge extends JavaPlugin {
             String revengeEffect = revengeParts[0];
             String[] revengeArgs = new String[0];
             if (revengeParts.length > 1) revengeArgs = revengeParts[1].split("\\.");
-            System.out.print("Stuff is: " + revengeEffect);
             if (revengeEffect.equalsIgnoreCase("msgradius")) { //msgradius:radius.message
                 int radiusSendTo;
                 if (revengeArgs.length > 1) {
